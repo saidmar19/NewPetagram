@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Petagram</string>
+    <string name="Boton_click">Click!</string>
+    <string name="Texto_titulo">Hello World!</string>
+    <string name="mensaje">FloatingButton</string>
+    <string name="nombre_mascota">Nombre</string>
+    <string name="raking_mascota">3</string>
+</resources>
