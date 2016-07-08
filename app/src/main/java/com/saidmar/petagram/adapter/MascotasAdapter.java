@@ -1,7 +1,6 @@
-package com.saidmar.petagram;
+package com.saidmar.petagram.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.saidmar.petagram.MainActivity;
+import com.saidmar.petagram.Mascotas;
+import com.saidmar.petagram.R;
 
 import java.util.ArrayList;
 
@@ -38,7 +41,7 @@ public class MascotasAdapter extends RecyclerView.Adapter<MascotasAdapter.Mascot
     }
 
     @Override
-    public void onBindViewHolder(MascotaViewHolder holder, int position) {
+    public void onBindViewHolder(final MascotaViewHolder holder, int position) {
 
         final Mascotas mascota = mascotas.get(position);
 
@@ -51,11 +54,11 @@ public class MascotasAdapter extends RecyclerView.Adapter<MascotasAdapter.Mascot
             public void onClick(View v) {
                 Toast.makeText(activity, "Diste like a" + mascota.getNombre(), Toast.LENGTH_SHORT).show();
 
-                ranking = Integer.parseInt(mascota.getRaking());
-                ranking ++;
-
-                sRanking = String.valueOf(ranking);
-                mascota.setRaking(sRanking);
+                int rank = Integer.parseInt(mascota.getRaking());
+                rank++;
+                mascota.setRaking(String.valueOf(rank));
+                //mascota.setRaking(mascota.getRaking()+1);
+                holder.rankingCard.setText(String.valueOf(mascota.getRaking()));
 
                 Toast.makeText(activity, "Ranking es: " + mascota.getRaking(), Toast.LENGTH_SHORT).show();
 

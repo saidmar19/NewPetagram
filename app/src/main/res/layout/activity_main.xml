@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.saidmar.petagram.MainActivity"
     android:background="@color/colorFondo">
 
-    <include android:id="@+id/miActionBarMain"
-        layout="@layout/actionbarmain">
-
-    </include>
 
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include android:id="@+id/miActionBarMain"
+            layout="@layout/actionbarmain"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        </include>
+
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+
+
+    </android.support.v4.view.ViewPager>
+
+
+
+
+    <!--
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -49,7 +82,10 @@
 
 
     </RelativeLayout>
+-->
 
 
-</RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
 

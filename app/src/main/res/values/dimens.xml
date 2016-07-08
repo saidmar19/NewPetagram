@@ -15,4 +15,6 @@
     <dimen name="nombre_cardview">25dp</dimen>
     <dimen name="ranking_cradview">20dp</dimen>
     <dimen name="ranking_left">140dp</dimen>
+    <dimen name="titulo_bio">30dp</dimen>
+    <dimen name="cuerpo_bio">20dp</dimen>
 </resources>

@@ -16,6 +16,8 @@ public class Mascotas {
         this.raking = raking;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }

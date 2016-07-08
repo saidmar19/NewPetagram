@@ -2,19 +2,24 @@ package com.saidmar.petagram;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
+
+import com.saidmar.petagram.adapter.MascotasAdapter;
+import com.saidmar.petagram.adapter.PageAdapter;
+import com.saidmar.petagram.fragment.PerfilFragment;
+import com.saidmar.petagram.fragment.RecyclerViewFragment;
+import com.saidmar.petagram.menuOpciones.Menu_Acerca;
+import com.saidmar.petagram.menuOpciones.Menu_Contacto;
 
 import java.util.ArrayList;
 
@@ -23,20 +28,31 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Mascotas> mascotas;
     private RecyclerView listaMascotas;
     public MascotasAdapter adaptador;
-    private static int ranking;
-    private static String sRanking;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ranking=0;
 
-        agregarFAB();
+        //agregarFAB();
         Toolbar miActionBarMain = (Toolbar)findViewById(R.id.miActionBarMain);
         setSupportActionBar(miActionBarMain);
 
+
+        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        setUpViewPager();
+
+        if(toolbar != null){
+            setSupportActionBar(toolbar);
+        }
+
+/*
         listaMascotas = (RecyclerView) findViewById(R.id.rv_mascotas);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -49,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         inicializarAdapter();
-
+*/
     }
 
     public void inicializarAdapter(){
@@ -83,13 +99,53 @@ public class MainActivity extends AppCompatActivity {
         //instancear mi arraylist para pdoer llenar la lista (ES NECESARIO)
         mascotas = new ArrayList<Mascotas>();
 
-        sRanking = String.valueOf(ranking);
+
 
         //agrgamos las mascotas a la lista
-        mascotas.add(new Mascotas(R.drawable.gatito,"Flufy",sRanking));
-        mascotas.add(new Mascotas(R.drawable.perrito,"Spike",sRanking));
-        mascotas.add(new Mascotas(R.drawable.pikachu,"Max",sRanking));
-        mascotas.add(new Mascotas(R.drawable.sombrerogatito,"Suzy",sRanking));
-        mascotas.add(new Mascotas(R.drawable.ratoncito,"Mickey",sRanking));
+        mascotas.add(new Mascotas(R.drawable.gatito,"Flufy","6"));
+        mascotas.add(new Mascotas(R.drawable.perrito,"Spike","3"));
+        mascotas.add(new Mascotas(R.drawable.pikachu,"Max","5"));
+        mascotas.add(new Mascotas(R.drawable.sombrerogatito,"Suzy","10"));
+        mascotas.add(new Mascotas(R.drawable.ratoncito,"Mickey","4"));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.opciones,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.mContacto:
+                Intent intent = new Intent(MainActivity.this,Menu_Contacto.class);
+                startActivity(intent);
+                break;
+            case R.id.mAcerca:
+                Intent i = new Intent(MainActivity.this,Menu_Acerca.class);
+                startActivity(i);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<Fragment>  agregarFragments(){ //con este metodo estamos agregando los fragments a la lista
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+        return fragments;
+    }
+
+    private void setUpViewPager(){
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_menu);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dog);
+    }
+
 }
