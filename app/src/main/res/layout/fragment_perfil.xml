@@ -1,0 +1,64 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.PerfilFragment">
+
+   <LinearLayout
+       android:id="@+id/linearLayout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <com.mikhaellopez.circularimageview.CircularImageView
+           android:layout_width="200dp"
+           android:layout_height="200dp"
+           android:src="@drawable/dandyprofile"
+           app:civ_border_color="#EEEEEE"
+           app:civ_border_width="4dp"
+           app:civ_shadow="true"
+           app:civ_shadow_radius="10"
+           app:civ_shadow_color="#8BC34A"
+           android:layout_gravity="center"
+           />
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="@dimen/titulo_bio"
+           android:textColor="@color/colorAccent"
+           android:textStyle="bold"
+           android:text="@string/nombre_dandyt"
+           android:gravity="center"
+           />
+
+       <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dandy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+           <android.support.design.widget.FloatingActionButton
+               android:id="@+id/fab_perfilFragment"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/ic_camera"
+               android:elevation="12dp"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               />
+
+
+       </RelativeLayout>
+
+   </LinearLayout>
+
+
+</FrameLayout>

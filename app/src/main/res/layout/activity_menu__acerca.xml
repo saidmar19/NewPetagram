@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menuOpciones.Menu_Acerca">
+
+    <include android:id="@+id/miActionBar"
+        layout="@layout/actionbar"></include>
+
+
+    <TextView
+        android:id="@+id/titulo_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/miActionBar"
+        android:layout_marginTop="@dimen/titulo_bio"
+        android:layout_marginLeft="@dimen/left"
+        android:text="@string/Saidamar"
+        android:textSize="@dimen/titulo_bio"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/cuerpo_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bioSaidmar"
+        android:layout_below="@+id/titulo_bio"
+        android:textSize="@dimen/cuerpo_bio"
+        android:padding="@dimen/left"
+        android:textStyle="italic"/>
+
+</RelativeLayout>
